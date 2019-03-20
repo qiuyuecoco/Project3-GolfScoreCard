@@ -1,0 +1,24 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.navigation {
+    background: #2c8e69;
+    width: 95%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.table{
+    margin-left: 20px;
+}
+
+/* media breakpoint for Mobile/Tablet */
+@media only screen and (max-width: 200px) {
+    body {
+        display: none;
+    }
+}
+@media only screen and (max-width: 650px) {
+    table {
+        /*split table in half for mobile purposes*/
+    }
+}

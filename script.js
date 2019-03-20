@@ -1,36 +1,37 @@
-let myresult;
-let newResult;
+let allCourse;
+let individualCourses;
 
-loadDoc();
-loadStuff();
-//redirect value of a .txt file to html
-function loadDoc() {
+//select box for selected Course
+function allCourses() {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200){
-            myresult = JSON.parse(this.responseText);
-            console.log(myresult);
-            for (let i = 0; i < myresult.courses.length; i++) {
-                $(".courseSelect").append(`<option value="${myresult.courses[i].id}">${myresult.courses[i].name}</option>`)
+            allCourse = JSON.parse(this.responseText);
+            console.log(allCourse);
+            for (let i = 0; i < allCourse.courses.length; i++) {
+                $(".selectCourse").append(`<option value="${allCourse.courses[i].id}">${allCourse.courses[i].name}</option>`)
             }
         }
     };
 
-    xhttp.open("GET", "https://uxcobra.com/golfapi/courses", true);
+    xhttp.open("GET", "https://golf-courses-api.herokuapp.com/courses", true);
     xhttp.send();
 }
-
-function loadStuff() {
+//individual Course information
+function individualCourse() {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200){
-            newResult = JSON.parse(this.responseText);
-            console.log(newResult);
+            individualCourses = JSON.parse(this.responseText);
+            console.log(individualCourses);
+            for (let i = 0; i < individualCourses.length; i++) {
+                $(".table").append(`individualCourses[i]`);
 
+            }
         }
     };
 
-    xhttp.open("GET", "https://uxcobra.com/golfapi", true);
+    xhttp.open("GET", "https://golf-courses-api.herokuapp.com/courses/${courseid}", true);
     xhttp.send();
 }
 

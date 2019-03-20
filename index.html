@@ -11,18 +11,59 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="Stylesheet/CSS/style.css">-->
+    <link rel="stylesheet" href="style.css">
     <!--JQUERY-->
     <script defer src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script defer src="script.js"></script>
 </head>
-<body>
+<body onload="allCourses()">
 
-    <select class="courseSelect" onchange="loadCourse(this.value, event)"></select>
+<!-- Header & Logo -->
+<nav id="nav" class="navigation navbar navbar-light mx-auto d-flex justify-content-around">
+    <a class="navbar-brand" href="https://qiuyuecoco.github.io/Project3-GolfScoreCard/">
+        <i class="fas fa-golf-ball" class="d-inline-block align-top" alt="golf ball logo"></i>
+        Golf ScoreCard
+    </a>
+    <!-- Course Selector -->
+    <select id="courseSelector" class="selectCourse" onchange="individualCourse(this.value, event)" value="Choose your course:">Select Course:</select>
+</nav>
+
+<!-- Table & Input -->
+<table class="table table-bordered container">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>ww</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+    </tr>
+    </tbody>
+
+</table>
 
 </body>
 </html>
