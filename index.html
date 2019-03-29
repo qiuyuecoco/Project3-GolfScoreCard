@@ -23,47 +23,38 @@
 <body onload="allCourses()">
 
 <!-- Header & Logo -->
-<nav id="nav" class="navigation navbar navbar-light mx-auto d-flex justify-content-around">
-    <a class="navbar-brand" href="https://qiuyuecoco.github.io/Project3-GolfScoreCard/">
+<nav id="nav" class="navigation navbar navbar-light mx-auto d-flex justify-content-between">
+    <a class="navbar-brand col-" href="https://qiuyuecoco.github.io/Project3-GolfScoreCard/">
         <i class="fas fa-golf-ball" class="d-inline-block align-top" alt="golf ball logo"></i>
         Golf ScoreCard
     </a>
     <!-- Course Selector -->
-    <select id="courseSelector" class="selectCourse" onchange="individualCourse(this.value, event)" value="Choose your course:">Select Course:</select>
+    <div class="chooseCourse col-">Available courses: </div>
+    <select id="courseSelector" class="selectCourse col-" onchange="individualCourse(this.value)">
+        <option>Select a course: </option>
+    </select>
+    <!--Tee Selector-->
+    <div class="teeSelector col-">Select Difficulty: </div>
+    <select id="teeSelector" class="selectTee col-">
+        <option>Select difficulty: </option>
+    </select>
+
 </nav>
 
 <!-- Table & Input -->
-<table class="table table-bordered container">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-    </tr>
-    </thead>
+<div class="container">
 
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>ww</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-    </tr>
-    </tbody>
 
-</table>
+</div>
+<!-- on click show MODAL (place onclick event on other items)-->
+<div class="modal" onclick="modal()">
+    <div class="inner">
+        <div class="popup">
+            <span>my modal</span>
+            <button onclick="closeModal(this)">Close</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
