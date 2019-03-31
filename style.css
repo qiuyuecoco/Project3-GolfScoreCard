@@ -7,16 +7,29 @@ body{
     border-radius: 8px;
     margin-bottom: 20px;
 }
-.table{
-    margin-left: 20px;
-}
 .container{
     display: flex;
     /*flex-direction: row;*/
 }
+
+.fa-trash-alt{
+    padding-right: 10px;
+}
+.holeCount{
+    display: flex;
+}
+
+
+
+
+
 .courseContainer{
     border: 1px solid #dadfea;
     padding: 4px;
+}
+.player{
+    display: flex;
+    flex-direction: column;
 }
 
 /* media breakpoint for Mobile/Tablet */

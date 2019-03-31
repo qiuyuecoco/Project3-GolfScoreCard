@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="style.css">
     <!--JQUERY-->
     <script defer src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script defer src="model.js"></script>
+    <script defer src="control.js"></script>
     <script defer src="script.js"></script>
 </head>
 <body onload="allCourses()">
@@ -40,12 +42,18 @@
     </select>
 
 </nav>
-
 <!-- Table & Input -->
-<div class="container">
+<!--<div class="container">-->
+    <!--<div class="players">-->
+        <!--<div class="playerContainer"></div>-->
+    <!--</div>-->
+    <!--<div class="info">-->
+        <!--<div class="holeCount"></div>-->
+    <!--</div>-->
+    <!--<div class="parContain"></div>-->
+<!--</div>-->
 
 
-</div>
 <!-- on click show MODAL (place onclick event on other items)-->
 <div class="modal" onclick="modal()">
     <div class="inner">
@@ -54,6 +62,13 @@
             <button onclick="closeModal(this)">Close</button>
         </div>
     </div>
+</div>
+
+<!-- class practice of Classes to generate-->
+<div class="playContain">
+    <div class="playerbox"></div>
+    <input type="text" class="playerinput" onkeyup="addPlayer(this.value, event)">
+    <div class="score"></div>
 </div>
 
 </body>
