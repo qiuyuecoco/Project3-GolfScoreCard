@@ -37,21 +37,18 @@
     </select>
     <!--Tee Selector-->
     <div class="teeSelector col-">Select Difficulty: </div>
-    <select id="teeSelector" class="selectTee col-">
+    <select id="teeSelector" class="selectTee col-" onchange="par(this.value)">
         <option>Select difficulty: </option>
     </select>
 
 </nav>
-<!-- Table & Input -->
-<!--<div class="container">-->
-    <!--<div class="players">-->
-        <!--<div class="playerContainer"></div>-->
-    <!--</div>-->
-    <!--<div class="info">-->
-        <!--<div class="holeCount"></div>-->
-    <!--</div>-->
-    <!--<div class="parContain"></div>-->
-<!--</div>-->
+
+<!-- Player Generator Container-->
+<div class="golfBox">
+    <div class="infoHeader"></div>
+    <div class="courseInfo"></div>
+</div>
+<div class="playerbox"></div>
 
 
 <!-- on click show MODAL (place onclick event on other items)-->
@@ -63,13 +60,23 @@
         </div>
     </div>
 </div>
-
-<!-- class practice of Classes to generate-->
-<div class="playContain">
-    <div class="playerbox"></div>
-    <input type="text" class="playerinput" onkeyup="addPlayer(this.value, event)">
-    <div class="score"></div>
-</div>
-
 </body>
 </html>
+
+
+
+
+<!--New player input; not required (class practice example)-->
+<!--<input placeholder="Add Player" type="text" class="playerinput" onkeyup="addPlayer(this.value, event)">-->
+
+
+<!-- Table & Input (obsolete; not using)-->
+<!--<div class="container">-->
+<!--<div class="players">-->
+<!--<div class="playerContainer"></div>-->
+<!--</div>-->
+<!--<div class="info">-->
+<!--<div class="holeCount"></div>-->
+<!--</div>-->
+<!--<div class="parContain"></div>-->
+<!--</div>-->

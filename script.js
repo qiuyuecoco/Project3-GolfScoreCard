@@ -20,8 +20,7 @@ function allCourses() {
 //individual Course information
 // img extra: <img class="courseImg ${aCourse.courses[i].id}" src="aCourse.courses[i].image"/>
 function individualCourse(courseID) {
-    $(".playerContainer").html("");
-    $(".holeCount").html("");
+    $(".playerbox").html("");
 
     $(".selectTee").html("");
     $(".selectTee").append(`<option>Select difficulty: </option>`);
@@ -31,7 +30,9 @@ function individualCourse(courseID) {
         if (this.readyState === 4 && this.status === 200){
             aCourse = JSON.parse(this.responseText);
             console.log(aCourse);
+            loadCard();
             placePlayers();
+
             let numPlayer = 4;
             for(let p = 0; p < numPlayer; p++){
             $(".playerContainer").append(`<div class="player ${[p + 1]}"><i onclick='deletePlayer1(this)' class='fas fa-trash-alt'></i>
@@ -46,10 +47,10 @@ function individualCourse(courseID) {
             }
 
             // populates available courses in Course Selector
-            for (let i = 0; i < aCourse.data.holes.length; i++) {
-                $(".holeCount").append(`<div class="courseContainer ${aCourse.data.holes[i].hole}">
-                ${aCourse.data.holes[i].hole}</div>`);
-            }
+            // for (let i = 0; i < aCourse.data.holes.length; i++) {
+            //     $(".holeCount").append(`<div class="courseContainer ${aCourse.data.holes[i].teeBoxes[i].teeType}">
+            //     ${aCourse.data.holes[i].hole}</div>`);
+            // }
             // adds difficulty into Tee Selector & prints hole count
             for (let i = 0; i < aCourse.data.holes[0].teeBoxes.length; i++) {
                 if (aCourse.data.holes[0].teeBoxes[i].teeType != "auto change location") {
@@ -70,6 +71,23 @@ function individualCourse(courseID) {
     };
     xhttp.open("GET", `https://golf-courses-api.herokuapp.com/courses/${courseID}`, true);
     xhttp.send();
+}
+function par(par) {
+    // $(".golfBox").html("");
+    for (let h = 0; h < aCourse.data.holes.length; h++) {
+        for (let t = 0; t < aCourse.data.holes[h].teeBoxes.length; t++) {
+            if(aCourse.data.holes[h].teeBoxes[t].teeType === par){
+                $(".courseInfo").append(`<div id=""></div>`);
+
+                console.log(
+                    aCourse.data.holes[h].teeBoxes[t].hcp,
+                    aCourse.data.holes[h].teeBoxes[t].par,
+                    aCourse.data.holes[h].teeBoxes[t].yards);
+            }
+
+        }
+
+    }
 }
 function teeType(teeType) {
     $(".container").html("");
