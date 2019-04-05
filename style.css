@@ -10,12 +10,45 @@ body{
 .golfBox{
     display: flex;
 }
+.infoHeader{
+    width: 120px;
+    text-align: center;
 
+}
+.courseInfo{
+    display: flex;
+}
+.courseContainer{
+    display: flex;
+    flex-direction: column;
+    width: 35px;
+}
+.hole{
+    width: 35px;
+    border: 1px solid #dadfea;
+}
+.hcp{
+    border: 1px solid darkred;
+    width: 35px;
+
+}
+.par{
+    width: 35px;
+
+    border: 1px solid green;
+}
+.yards{
+    width: 35px;
+
+    border: 1px solid blue;
+
+}
 .score{
     display: flex;
 }
 .scoreInput{
     width: 35px;
+    text-align: center;
 }
 .inScore{
     width: 35px;
@@ -35,10 +68,7 @@ body{
     flex-direction: row-reverse;
     justify-content: space-around;
 }
-.courseContainer{
-    border: 1px solid #dadfea;
-    padding: 4px;
-}
+
 .player{
     display: flex;
     flex-direction: column;

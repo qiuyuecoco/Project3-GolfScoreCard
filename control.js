@@ -45,7 +45,7 @@ function placeHoles(playerId){
     let theHole;
     while (i < numberOfHoles){
         theHole = playerObject.holes[i];
-        console.log(theHole);
+        // console.log(theHole);
         $("#player"+playerId+"Score").append
         (`<input id="player${playerId}Hole${i+1}" class="scoreInput holeNumber${i+1}"         type="number">`);
         $("#player"+playerId+"Hole"+(i+1)).bind('change', function () {

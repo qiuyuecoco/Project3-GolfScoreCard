@@ -29,7 +29,7 @@ function individualCourse(courseID) {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200){
             aCourse = JSON.parse(this.responseText);
-            console.log(aCourse);
+            // console.log(aCourse);
             loadCard();
             placePlayers();
 
@@ -74,20 +74,24 @@ function individualCourse(courseID) {
 }
 function par(par) {
     // $(".golfBox").html("");
+    $(".courseInfo").html("");
+    $(".infoHeader").html("");
+
     for (let h = 0; h < aCourse.data.holes.length; h++) {
         for (let t = 0; t < aCourse.data.holes[h].teeBoxes.length; t++) {
             if(aCourse.data.holes[h].teeBoxes[t].teeType === par){
-                $(".courseInfo").append(`<div id=""></div>`);
-
+                $(".courseInfo").append(`<div class="courseContainer${h + 1}"><div class="hole">${aCourse.data.holes[h].hole}</div><div class="hcp">${aCourse.data.holes[h].teeBoxes[t].hcp}</div><div class="par">${aCourse.data.holes[h].teeBoxes[t].par}</div><div class="yards">${aCourse.data.holes[h].teeBoxes[t].yards}</div></div>`);
                 console.log(
                     aCourse.data.holes[h].teeBoxes[t].hcp,
                     aCourse.data.holes[h].teeBoxes[t].par,
                     aCourse.data.holes[h].teeBoxes[t].yards);
             }
-
         }
-
     }
+    $(".infoHeader").append(`<div class="holeName">Hole</div><div class="handicapName">HCP</div><div class="parName">Par</div><div class="yardsName">Yards</div>`);
+    $('<div class="inScore"></div>').insertAfter(".courseContainer9");
+    $('<div class="outScore"></div>').insertAfter(".courseContainer18");
+    $('<div class="totScore"></div>').insertAfter(".outScore");
 }
 function teeType(teeType) {
     $(".container").html("");
@@ -98,7 +102,7 @@ function teeType(teeType) {
             aCourse = JSON.parse(this.responseText);
             console.log(aCourse);
             for (let i = 0; i < aCourse.data.holes.length; i++) {
-                $(".container").append(`<div class="courseContainer ${aCourse.data.holes[i].hole}">
+                $(".container").append(`<div class=" ${aCourse.data.holes[i].hole}">
                 ${aCourse.data.holes[i].hole}
                 </div>`);
             }
