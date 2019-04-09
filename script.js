@@ -33,18 +33,18 @@ function individualCourse(courseID) {
             loadCard();
             placePlayers();
 
-            let numPlayer = 4;
-            for(let p = 0; p < numPlayer; p++){
-            $(".playerContainer").append(`<div class="player ${[p + 1]}"><i onclick='deletePlayer1(this)' class='fas fa-trash-alt'></i>
-                <input contenteditable="true" placeholder="Player ${[p +1]}"></div>`);
-
-                // switch (event.key) {
-                //     case "Enter":
-                //         $(".playerContainer").val("");
-                //         break;
-                // }
-
-            }
+            // let numPlayer = 4;
+            // for(let p = 0; p < numPlayer; p++){
+            // $(".playerContainer").append(`<div class="player ${[p + 1]}"><i onclick='deletePlayer1(this)' class='fas fa-trash-alt'></i>
+            //     <input contenteditable="true" placeholder="Player ${[p +1]}"></div>`);
+            //
+            //     switch (event.key) {
+            //         case "Enter":
+            //             $(".playerContainer").val("");
+            //             break;
+            //     }
+            //
+            // }
 
             // populates available courses in Course Selector
             // for (let i = 0; i < aCourse.data.holes.length; i++) {
@@ -81,17 +81,17 @@ function par(par) {
         for (let t = 0; t < aCourse.data.holes[h].teeBoxes.length; t++) {
             if(aCourse.data.holes[h].teeBoxes[t].teeType === par){
                 $(".courseInfo").append(`<div class="courseContainer${h + 1}"><div class="hole">${aCourse.data.holes[h].hole}</div><div class="hcp">${aCourse.data.holes[h].teeBoxes[t].hcp}</div><div class="par">${aCourse.data.holes[h].teeBoxes[t].par}</div><div class="yards">${aCourse.data.holes[h].teeBoxes[t].yards}</div></div>`);
-                console.log(
-                    aCourse.data.holes[h].teeBoxes[t].hcp,
-                    aCourse.data.holes[h].teeBoxes[t].par,
-                    aCourse.data.holes[h].teeBoxes[t].yards);
+                // console.log(
+                //     aCourse.data.holes[h].teeBoxes[t].hcp,
+                //     aCourse.data.holes[h].teeBoxes[t].par,
+                //     aCourse.data.holes[h].teeBoxes[t].yards);
             }
         }
     }
     $(".infoHeader").append(`<div class="holeName">Hole</div><div class="handicapName">HCP</div><div class="parName">Par</div><div class="yardsName">Yards</div>`);
-    $('<div class="inScore"></div>').insertAfter(".courseContainer9");
-    $('<div class="outScore"></div>').insertAfter(".courseContainer18");
-    $('<div class="totScore"></div>').insertAfter(".outScore");
+    $('<div class="in">In</div>').insertAfter(".courseContainer9");
+    $('<div class="out">Out</div>').insertAfter(".courseContainer18");
+    $('<div class="totals">Tot</div>').insertAfter(".out");
 }
 function teeType(teeType) {
     $(".container").html("");
@@ -123,9 +123,10 @@ function deletePlayer1(player) {
 
 //select > onChange > this.value
 // https://uxcobra.com/golfapi/courses/18300
-function modal() {
-    $(".modal").show();
-}
-function closeModal(element) {
-    $(element).parent().parent().parent().fadeOut();
-}
+// methods for modal that I never got time to use
+// function modal() {
+//     $(".modal").show();
+// }
+// function closeModal(element) {
+//     $(element).parent().parent().parent().fadeOut();
+// }

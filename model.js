@@ -1,7 +1,6 @@
 class PlayerCollection{
     constructor(){
         this.collection = [];
-        this.array = [0, 0, 0, 0, 0, 0, 0];
         this.nameArray = ["bob", "jake", "john", "wes", "alex", "ty", "chris", "meg"]
     }
     addPlayers(id, name){
@@ -35,9 +34,7 @@ class PlayerCollection{
                 return;
             }
         }
-        // delete holes while deleting player
     }
-
 }
 class Player{
     constructor(id, name, score){
@@ -64,44 +61,69 @@ class Hole{
         console.log(this);
     }
 }
-function Binding(b) {
-    _this = this;
-    this.elementBindings = [];
-    this.value = b.object[b.property];
-    this.valueGetter = function(){
-        return _this.value;
-    }
-    this.valueSetter = function(val){
-        _this.value = val;
-        for (let i = 0; i < _this.elementBindings.length; i++) {
-            let binding=_this.elementBindings[i];
-            binding.element[binding.attribute] = val;
-        }
-    }
-    this.addBinding = function(element, attribute, event){
-        let binding = {
-            element: element,
-            attribute: attribute
-        }
-        if (event){
-            element.addEventListener(event, function(event){
-                _this.valueSetter(element[attribute]);
-            });
-            binding.event = event;
-        }
-        this.elementBindings.push(binding);
-        element[attribute] = _this.value;
-        return _this;
-    }
+// function Binding(b) {
+//     _this = this;
+//     this.elementBindings = [];
+//     this.value = b.object[b.property];
+//     this.valueGetter = function(){
+//         return _this.value;
+//     }
+//     this.valueSetter = function(val){
+//         _this.value = val;
+//         for (let i = 0; i < _this.elementBindings.length; i++) {
+//             let binding=_this.elementBindings[i];
+//             binding.element[binding.attribute] = val;
+//         }
+//     }
+//     this.addBinding = function(element, attribute, event){
+//         let binding = {
+//             element: element,
+//             attribute: attribute
+//         }
+//         if (event){
+//             element.addEventListener(event, function(event){
+//                 _this.valueSetter(element[attribute]);
+//             });
+//             binding.event = event;
+//         }
+//         this.elementBindings.push(binding);
+//         element[attribute] = _this.value;
+//         return _this;
+//     }
+//
+//     Object.defineProperty(b.object, b.property, {
+//         get: this.valueGetter,
+//         set: this.valueSetter
+//     });
+//
+//     b.object[b.property] = this.value;
+// }
+//
+// function playerScoreBind() {
+//     for (let ph = 0; ph < myInputElement1.length; ph++) {
+//         const myInputElement1Element = myInputElement1[ph];
+//
+//     }
+// }
+// var playerHoleObject = {a:123};
+// var myInputElement1 = document.getElementById("myText1")
+// var myInputElement2 = document.getElementById("myText2")
+// var myDOMElement = document.getElementById("myDomElement")
+//
+// new Binding({
+//     object: obj,
+//     property: "a"
+// })
+//     .addBinding(myInputElement1, "value", "keyup")
+//     .addBinding(myInputElement2, "value", "keyup")
+//     .addBinding(myDOMElement, "innerHTML")
+//
+// obj.a = 456;
 
-    Object.defineProperty(b.object, b.property, {
-        get: this.valueGetter,
-        set: this.valueSetter
-    });
-
-    b.object[b.property] = this.value;
-}
-let playgen = new PlayerCollection();
 // attempt to assign holeScore to grab for calculations
 // let playerHoles = playgen.holeScore;
+
+let playgen = new PlayerCollection();
+
+
 

@@ -19,7 +19,7 @@ function placePlayers() {
                     <a href="#" onclick="deletePlayer(${playgen.collection[p].id})">
                         <i onclick='deletePlayer(this)' class='fas fa-trash-alt'></i>
                     </a>
-                    <span>${playgen.collection[p].name}</span>
+                    <span contenteditable="true">${playgen.collection[p].name}</span>
                 </div>
                 <div id="player${playgen.collection[p].id}Score" class="score"></div>
             </div>
@@ -47,11 +47,12 @@ function placeHoles(playerId){
         theHole = playerObject.holes[i];
         // console.log(theHole);
         $("#player"+playerId+"Score").append
-        (`<input id="player${playerId}Hole${i+1}" class="scoreInput holeNumber${i+1}"         type="number">`);
+        (`<input id="player${playerId}Hole${i+1}" class="scoreInput holeNumber${i+1}" type="number">`);
         $("#player"+playerId+"Hole"+(i+1)).bind('change', function () {
             setHoleValue(theHole, this.value);
         });
         i++;
+        // will bind it to the last hole & not the corresponding hole for the input location
     }
 }
 function setHoleValue(theHole, score) {

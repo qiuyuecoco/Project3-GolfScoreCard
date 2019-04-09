@@ -37,12 +37,26 @@ body{
 
     border: 1px solid green;
 }
-.yards{
+.yards {
     width: 35px;
 
     border: 1px solid blue;
+}
+.in{
+    width: 35px;
+    text-align: center;
+}
+.out{
+    width: 35px;
+    text-align: center;
 
 }
+.totals{
+    width: 35px;
+    text-align: center;
+
+}
+
 .score{
     display: flex;
 }
