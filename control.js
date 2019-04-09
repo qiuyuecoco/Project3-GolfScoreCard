@@ -45,15 +45,34 @@ function placeHoles(playerId){
     let theHole;
     while (i < numberOfHoles){
         theHole = playerObject.holes[i];
-        // console.log(theHole);
+        console.log(theHole);
         $("#player"+playerId+"Score").append
         (`<input id="player${playerId}Hole${i+1}" class="scoreInput holeNumber${i+1}" type="number">`);
-        $("#player"+playerId+"Hole"+(i+1)).bind('change', function () {
-            setHoleValue(theHole, this.value);
-        });
+
+        // Using Bind class
+        // let element = document.getElementById("player"+playerId+"Hole"+ (i+1));
+        // new Binding({object: theHole, property: theHole.holeScore})
+        //     .addBinding(element,"value", "click" )
+        //     .addBinding(element,"value","keyup");
+
+        // using setScore function
+        // $("#player"+playerId+"Hole"+(i+1)).bind('change', function () {
+        //     setHoleValue(theHole, this.value);
+        // });
+
+        let element = $("#player"+playerId+"Hole"+(i+1));
+        playerScoreBind(element, theHole);
         i++;
         // will bind it to the last hole & not the corresponding hole for the input location
     }
+    // for(let h = 0; h < numberOfHoles.length; h++){
+    //     theHole = playerObject.holes[h];
+    //     console.log(theHole);
+    //     let element = document.getElementById("player"+playerId+"Hole"+ (h+1));
+    //     new Binding({object: theHole, property: theHole.holeScore})
+    //         .addBinding(element,"value", "click" )
+    //         .addBinding(element,"value","keyup");
+    // }
 }
 function setHoleValue(theHole, score) {
     theHole.setScore(score);

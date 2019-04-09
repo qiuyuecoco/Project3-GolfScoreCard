@@ -45,14 +45,15 @@ class Player{
     }
     addHole(playerId, holeNumber){
         //append an input tied to the player
-        let hole = new Hole(holeNumber);
+        let hole = new Hole(holeNumber, playerId);
         this.holes.push(hole);
         // playerId.value = holeNumber;
         // holeNumber.addEventListener("change", this, false);
     }
 }
 class Hole{
-    constructor(holeNum){
+    constructor(holeNum, player){
+        this.player =player;
         this.holeNum = holeNum;
         this.holeScore = 0;
     }
@@ -61,51 +62,55 @@ class Hole{
         console.log(this);
     }
 }
-// function Binding(b) {
-//     _this = this;
-//     this.elementBindings = [];
-//     this.value = b.object[b.property];
-//     this.valueGetter = function(){
-//         return _this.value;
-//     }
-//     this.valueSetter = function(val){
-//         _this.value = val;
-//         for (let i = 0; i < _this.elementBindings.length; i++) {
-//             let binding=_this.elementBindings[i];
-//             binding.element[binding.attribute] = val;
-//         }
-//     }
-//     this.addBinding = function(element, attribute, event){
-//         let binding = {
-//             element: element,
-//             attribute: attribute
-//         }
-//         if (event){
-//             element.addEventListener(event, function(event){
-//                 _this.valueSetter(element[attribute]);
-//             });
-//             binding.event = event;
-//         }
-//         this.elementBindings.push(binding);
-//         element[attribute] = _this.value;
-//         return _this;
-//     }
-//
-//     Object.defineProperty(b.object, b.property, {
-//         get: this.valueGetter,
-//         set: this.valueSetter
-//     });
-//
-//     b.object[b.property] = this.value;
-// }
-//
-// function playerScoreBind() {
-//     for (let ph = 0; ph < myInputElement1.length; ph++) {
-//         const myInputElement1Element = myInputElement1[ph];
-//
-//     }
-// }
-// var playerHoleObject = {a:123};
+function Binding(b) {
+    _this = this;
+    this.elementBindings = [];
+    this.value = b.object[b.property];
+    this.valueGetter = function(){
+        return _this.value;
+    };
+    this.valueSetter = function(val){
+        _this.value = val;
+        for (let i = 0; i < _this.elementBindings.length; i++) {
+            let binding=_this.elementBindings[i];
+            binding.element[binding.attribute] = val;
+        }
+    };
+    this.addBinding = function(element, attribute, event){
+        let binding = {
+            element: element,
+            attribute: attribute
+        };
+        if (event){
+            element.addEventListener(event, function(event){
+                _this.valueSetter(element[attribute]);
+            });
+            binding.event = event;
+        }
+        this.elementBindings.push(binding);
+        element[attribute] = _this.value;
+        return _this;
+    };
+
+    Object.defineProperty(b.object, b.property, {
+        get: this.valueGetter,
+        set: this.valueSetter
+    });
+
+    b.object[b.property] = this.value;
+}
+
+function playerScoreBind(element, hole) {
+
+    element.bind('click', function () {
+        setHoleValue(hole, this.value)
+    });
+    element.bind('keyup', function () {
+        setHoleValue(hole, this.value)
+    });
+
+}
+// var obj = new Hole();
 // var myInputElement1 = document.getElementById("myText1")
 // var myInputElement2 = document.getElementById("myText2")
 // var myDOMElement = document.getElementById("myDomElement")
