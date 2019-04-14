@@ -30,18 +30,18 @@ body{
 .hcp{
     border: 1px solid darkred;
     width: 35px;
-
 }
+
 .par{
     width: 35px;
-
     border: 1px solid green;
 }
+
 .yards {
     width: 35px;
-
     border: 1px solid blue;
 }
+
 .in{
     width: 35px;
     text-align: center;
@@ -54,7 +54,9 @@ body{
 .totals{
     width: 35px;
     text-align: center;
-
+}
+.Total{
+    padding-top: 3px;
 }
 
 .score{

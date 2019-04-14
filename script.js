@@ -3,17 +3,17 @@ let aCourse;
 
 //select box for selected Course
 function allCourses() {
+
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200){
             allCourse = JSON.parse(this.responseText);
-            console.log(allCourse);
+            // console.log(allCourse);
             for (let i = 0; i < allCourse.courses.length; i++) {
                 $(".selectCourse").append(`<option value="${allCourse.courses[i].id}">${allCourse.courses[i].name}</option>`)
             }
         }
     };
-
     xhttp.open("GET", "https://golf-courses-api.herokuapp.com/courses", true);
     xhttp.send();
 }
@@ -21,6 +21,7 @@ function allCourses() {
 // img extra: <img class="courseImg ${aCourse.courses[i].id}" src="aCourse.courses[i].image"/>
 function individualCourse(courseID) {
     $(".playerbox").html("");
+    $(".courseInfo").html("");
 
     $(".selectTee").html("");
     $(".selectTee").append(`<option>Select difficulty: </option>`);
@@ -73,25 +74,34 @@ function individualCourse(courseID) {
     xhttp.send();
 }
 function par(par) {
-    // $(".golfBox").html("");
     $(".courseInfo").html("");
     $(".infoHeader").html("");
+
+    let hcpTot = 0;
+    let parTot = 0;
+    let yardsTot = 0;
 
     for (let h = 0; h < aCourse.data.holes.length; h++) {
         for (let t = 0; t < aCourse.data.holes[h].teeBoxes.length; t++) {
             if(aCourse.data.holes[h].teeBoxes[t].teeType === par){
                 $(".courseInfo").append(`<div class="courseContainer${h + 1}"><div class="hole">${aCourse.data.holes[h].hole}</div><div class="hcp">${aCourse.data.holes[h].teeBoxes[t].hcp}</div><div class="par">${aCourse.data.holes[h].teeBoxes[t].par}</div><div class="yards">${aCourse.data.holes[h].teeBoxes[t].yards}</div></div>`);
+                hcpTot = hcpTot + Number(aCourse.data.holes[h].teeBoxes[t].hcp);
+                parTot = parTot + Number(aCourse.data.holes[h].teeBoxes[t].par);
+                yardsTot = yardsTot + Number(aCourse.data.holes[h].teeBoxes[t].yards);
+
                 // console.log(
                 //     aCourse.data.holes[h].teeBoxes[t].hcp,
                 //     aCourse.data.holes[h].teeBoxes[t].par,
                 //     aCourse.data.holes[h].teeBoxes[t].yards);
+
             }
         }
     }
+
     $(".infoHeader").append(`<div class="holeName">Hole</div><div class="handicapName">HCP</div><div class="parName">Par</div><div class="yardsName">Yards</div>`);
     $('<div class="in">In</div>').insertAfter(".courseContainer9");
     $('<div class="out">Out</div>').insertAfter(".courseContainer18");
-    $('<div class="totals">Tot</div>').insertAfter(".out");
+    $(`<div class="totals">Tot<div id="hcpTot" class="Total">${hcpTot}</div><div id="parTot" class="Total">${parTot}</div><div id="yardsTot" class="Total">${yardsTot}</div></div>`).insertAfter(".out");
 }
 function teeType(teeType) {
     $(".container").html("");

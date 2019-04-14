@@ -62,54 +62,20 @@ class Hole{
         console.log(this);
     }
 }
-function Binding(b) {
-    _this = this;
-    this.elementBindings = [];
-    this.value = b.object[b.property];
-    this.valueGetter = function(){
-        return _this.value;
-    };
-    this.valueSetter = function(val){
-        _this.value = val;
-        for (let i = 0; i < _this.elementBindings.length; i++) {
-            let binding=_this.elementBindings[i];
-            binding.element[binding.attribute] = val;
-        }
-    };
-    this.addBinding = function(element, attribute, event){
-        let binding = {
-            element: element,
-            attribute: attribute
-        };
-        if (event){
-            element.addEventListener(event, function(event){
-                _this.valueSetter(element[attribute]);
-            });
-            binding.event = event;
-        }
-        this.elementBindings.push(binding);
-        element[attribute] = _this.value;
-        return _this;
-    };
 
-    Object.defineProperty(b.object, b.property, {
-        get: this.valueGetter,
-        set: this.valueSetter
+function playerScoreBind(element, hole, playerId) {
+    element.bind('click keyup', function () {
+        setHoleValue(hole, this.value);
+        updateInOutTot(playerId);
+        //update in out tot score
     });
-
-    b.object[b.property] = this.value;
+}
+function playerNameBind (element, name){
+    element.bind('')
 }
 
-function playerScoreBind(element, hole) {
+let playgen = new PlayerCollection();
 
-    element.bind('click', function () {
-        setHoleValue(hole, this.value)
-    });
-    element.bind('keyup', function () {
-        setHoleValue(hole, this.value)
-    });
-
-}
 // var obj = new Hole();
 // var myInputElement1 = document.getElementById("myText1")
 // var myInputElement2 = document.getElementById("myText2")
@@ -128,7 +94,44 @@ function playerScoreBind(element, hole) {
 // attempt to assign holeScore to grab for calculations
 // let playerHoles = playgen.holeScore;
 
-let playgen = new PlayerCollection();
 
+// couldn't figure out how to implement.. :(
+// function Binding(b) {
+//     _this = this;
+//     this.elementBindings = [];
+//     this.value = b.object[b.property];
+//     this.valueGetter = function(){
+//         return _this.value;
+//     };
+//     this.valueSetter = function(val){
+//         _this.value = val;
+//         for (let i = 0; i < _this.elementBindings.length; i++) {
+//             let binding=_this.elementBindings[i];
+//             binding.element[binding.attribute] = val;
+//         }
+//     };
+//     this.addBinding = function(element, attribute, event){
+//         let binding = {
+//             element: element,
+//             attribute: attribute
+//         };
+//         if (event){
+//             element.addEventListener(event, function(event){
+//                 _this.valueSetter(element[attribute]);
+//             });
+//             binding.event = event;
+//         }
+//         this.elementBindings.push(binding);
+//         element[attribute] = _this.value;
+//         return _this;
+//     };
+//
+//     Object.defineProperty(b.object, b.property, {
+//         get: this.valueGetter,
+//         set: this.valueSetter
+//     });
+//
+//     b.object[b.property] = this.value;
+// }
 
 

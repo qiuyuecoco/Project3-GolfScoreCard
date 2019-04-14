@@ -27,10 +27,11 @@ function placePlayers() {
         placeHoles(playgen.collection[p].id);
 
     }
-    $('<div class="inScore"></div>').insertAfter(".holeNumber9");
-    $('<div class="outScore"></div>').insertAfter(".holeNumber18");
-    $('<div class="totScore"></div>').insertAfter(".outScore");
-
+    for (let p = 0; p < playgen.collection.length; p++) {
+        $(`<div class="inScore" id="player${playgen.collection[p].id}InScore"></div>`).insertAfter(".holeNumber9");
+        $(`<div class="outScore" id="player${playgen.collection[p].id}OutScore"></div>`).insertAfter(".holeNumber18");
+        $(`<div class="totScore" id="player${playgen.collection[p].id}TotScore"></div>`).insertAfter(".outScore");
+    }
 }
 function placeHoles(playerId){
     let playerObject = playgen.collection.find(function (player) {
@@ -45,43 +46,49 @@ function placeHoles(playerId){
     let theHole;
     while (i < numberOfHoles){
         theHole = playerObject.holes[i];
-        console.log(theHole);
+        // console.log(theHole);
         $("#player"+playerId+"Score").append
         (`<input id="player${playerId}Hole${i+1}" class="scoreInput holeNumber${i+1}" type="number">`);
-
-        // Using Bind class
-        // let element = document.getElementById("player"+playerId+"Hole"+ (i+1));
-        // new Binding({object: theHole, property: theHole.holeScore})
-        //     .addBinding(element,"value", "click" )
-        //     .addBinding(element,"value","keyup");
-
-        // using setScore function
-        // $("#player"+playerId+"Hole"+(i+1)).bind('change', function () {
-        //     setHoleValue(theHole, this.value);
-        // });
-
         let element = $("#player"+playerId+"Hole"+(i+1));
-        playerScoreBind(element, theHole);
+        playerScoreBind(element, theHole, playerId);
         i++;
-        // will bind it to the last hole & not the corresponding hole for the input location
     }
-    // for(let h = 0; h < numberOfHoles.length; h++){
-    //     theHole = playerObject.holes[h];
-    //     console.log(theHole);
-    //     let element = document.getElementById("player"+playerId+"Hole"+ (h+1));
-    //     new Binding({object: theHole, property: theHole.holeScore})
-    //         .addBinding(element,"value", "click" )
-    //         .addBinding(element,"value","keyup");
-    // }
 }
+
 function setHoleValue(theHole, score) {
     theHole.setScore(score);
+}
+
+function updateInOutTot(playerId) {
+    let playerObject = playgen.collection.find(function (player) {
+        return player.id === playerId;
+    });
+    let inTot = 0;
+    let outTot = 0;
+    let taterTots = 0;
+    for (let i = 0; i < playerObject.holes.length; i++) {
+        taterTots += Number(playerObject.holes[i].holeScore);
+        $("#player"+ playerObject.id +"TotScore").append(`<span>${taterTots}</span>`);
+        if(playerObject.holes[i].holeNum<=9){
+            inTot += Number(playerObject.holes[i].holeScore);
+            $("#player"+ playerObject.id +"InScore").text(inTot);
+        }
+        if(playerObject.holes[i].holeNum>9){
+            outTot += Number(playerObject.holes[i].holeScore);
+            $("#player"+ playerObject.id +"OutScore").html(outTot);
+        }
+        console.log(taterTots, inTot, outTot);
+
+    }
+    // playerObject.holes[i];
+    // $(".totScore").append(inScore + outScore);
 }
 
 function deletePlayer(id) {
     playgen.delete(id);
     placePlayers();
 }
+
 // playgen.addHoles()
 
 // <!--New player input; not required (class practice example)-->
