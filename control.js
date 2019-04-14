@@ -12,6 +12,7 @@ function placePlayers() {
     $(".playerbox").html("");
     $(".score").html("");
     for (let p = 0; p < playgen.collection.length; p++) {
+        let player = playgen.collection[p].id;
         $(".playerbox").append(
             `
             <div class="allPlayerInfo">
@@ -25,13 +26,16 @@ function placePlayers() {
             </div>
 `);
         placeHoles(playgen.collection[p].id);
+        $(`<div id="player${playgen.collection[p].id}InScore" class="inScore"></div>`).insertAfter("#player"+ player +"Hole9");
+        $(`<div id="player${playgen.collection[p].id}OutScore" class="outScore"></div>`).insertAfter("#player"+ player +"Hole18");
+        $(`<div id="player${playgen.collection[p].id}TotScore" class="totScore"></div>`).insertAfter("#player"+ player +"OutScore");
 
     }
-    for (let p = 0; p < playgen.collection.length; p++) {
-        $(`<div class="inScore" id="player${playgen.collection[p].id}InScore"></div>`).insertAfter(".holeNumber9");
-        $(`<div class="outScore" id="player${playgen.collection[p].id}OutScore"></div>`).insertAfter(".holeNumber18");
-        $(`<div class="totScore" id="player${playgen.collection[p].id}TotScore"></div>`).insertAfter(".outScore");
-    }
+        // $(`<div class="inScore"></div>`).insertAfter("#player1hole9");
+        // $(`<div class="outScore"></div>`).insertAfter("#player1hole18");
+        // $(`<div class="totScore"></div>`).insertAfter(".outScore");
+    // id="player${player}InScore"
+    // id="player${playgen.collection[p].id}OutScore"
 }
 function placeHoles(playerId){
     let playerObject = playgen.collection.find(function (player) {
@@ -68,7 +72,7 @@ function updateInOutTot(playerId) {
     let taterTots = 0;
     for (let i = 0; i < playerObject.holes.length; i++) {
         taterTots += Number(playerObject.holes[i].holeScore);
-        $("#player"+ playerObject.id +"TotScore").append(`<span>${taterTots}</span>`);
+        $("#player"+ playerObject.id +"TotScore").text(taterTots);
         if(playerObject.holes[i].holeNum<=9){
             inTot += Number(playerObject.holes[i].holeScore);
             $("#player"+ playerObject.id +"InScore").text(inTot);
